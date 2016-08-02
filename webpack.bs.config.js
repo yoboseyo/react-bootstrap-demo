@@ -1,5 +1,10 @@
 var htmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
+
+var cssExtractor = new ExtractTextPlugin('css/style.css');
+var lessExtractor = new ExtractTextPlugin('css/bootstrap.css');
+
 module.exports = {
   entry: {
     index: './demo/index.jsx',
@@ -12,21 +17,34 @@ module.exports = {
     loaders:[
       {
         test:/\.css$/,
-        loaders: ["style","css"],
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
         exclude: "/node_modules/"
       },
-/*      {
+      {
         test: /\.less$/,
-        loaders: ["style","css","less"],
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader"),
+        /*loaders: ["style","css","less"],*/
         exclude: "/node_modules/"
-      },*/
+      },
       {
         test: /\.jsx?$/,
-    /*    loaders: ['babel'],*/
         loaders:['react-hot','babel?presets[]=es2015&presets[]=react'],
     /*    query: ['es2015','react'],*/
         exclude: "/node_modules/",
         include: path.resolve(__dirname, 'demo')
+      },
+      {
+        test   : /\.woff/,
+        loader : 'url?prefix=font/&limit=10000&mimetype=application/font-woff'
+      }, {
+        test   : /\.ttf/,
+        loader : 'file?prefix=font/'
+      }, {
+        test   : /\.eot/,
+        loader : 'file?prefix=font/'
+      }, {
+        test   : /\.svg/,
+        loader : 'file?prefix=font/'
       }
 
     ]
@@ -42,6 +60,8 @@ module.exports = {
     new htmlWebpackPlugin({
       title:"react bootstrap",
       chunks: ["index"]
-    })
+    }),
+    cssExtractor,
+    lessExtractor
   ]
 };

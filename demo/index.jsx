@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from 'react-bootstrap';
 
-/*require('./css/bootstrap.min.css');*/
-
+require('./less/bootstrap.less');
+require('./css/main.css');
 var section = document.createElement('section');
 document.body.appendChild(section);
 
