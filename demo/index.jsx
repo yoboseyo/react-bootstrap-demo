@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button} from 'react-bootstrap';
+import { Button } from 'antd';
+
 require('./js/jquery-3.0.0.min.js');
 import CommonApp from './js/index.js';
 
@@ -17,7 +18,7 @@ var section = document.createElement('section');
 document.body.appendChild(section);
 section.className = 'page-reg';
 class Main extends React.Component{
-  render(){
+  render() {
     return (
       <div className="wrapper">
         <div className="banner"></div>
@@ -37,7 +38,7 @@ class Main extends React.Component{
               <p>瞬间到账</p>
           </li>
         </ul>
-        <Form />
+        <MyForm />
         <p className="service text-center">客服电话：021-31338820&nbsp;&nbsp;&nbsp;&nbsp;客服时间：9:30-18:30</p>
       </div>
     )
@@ -46,69 +47,132 @@ class Main extends React.Component{
     CommonApp.initFun();
   }
 }
-class Form extends React.Component {
+class MyForm extends React.Component {
   render() {
     return (
+      /*<Form className="reg-form j_regForm" method="" action="" onValidSubmit={this._handleValidSubmit.bind(this)} onInvalidSubmit={this._handleInvalidSubmit.bind(this)}>*/
       <form className="reg-form j_regForm" method="" action="">
         <div className="form-group">
           <input name="mobile" className="form-control" type="text" placeholder="请输入您的手机号码"/>
         </div>
-        <div className="form-group pass-box">
-          <input name="password" className="form-control" type="password" placeholder="请输入6-8位数字密码"/>
-          <a className="j_passSwitch" href="javascript:;" data-switch="0">显示密码</a>
-        </div>
-        <div className="form-group verify-box clearfix">
-          <input name="verify" className="form-control" type="text" placeholder="请输入验证码"/>
-          <a className="btn btn-primary j_msgs" href="javascript:;">
-            获取验证码
-          </a>
-        </div>
-        <div className="form-group agreement clearfix">
-          <div className="chk-box">
-            <input className="j_agree" name="agree" type="checkbox"/>
-            <span></span>
-          </div>
-          <p>我同意<a href="#">《借款服务与隐私协议》</a></p>
-        </div>
-        <div className="form-group submit-box">
-          <input type="submit" className="btn btn-primary j_submit" href="javascript:;" value="快速注册" disabled/>
-        </div>
+        <PassSec />
+        <VerifySec />
+        <Accept />
       </form>
     )
 
   }
 }
-/*class ButtonInstance extends React.Component{
-  render(){
+class VerifySec extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      switch: true
+    }
+    this.clickh = this.clickh.bind(this);
+  }
+
+  render() {
     return (
-        <div>
-
-          <Button>Default</Button>
-
-          <Button bsStyle="primary">Primary</Button>
-
-          <Button bsStyle="success">Success</Button>
-
-          <Button bsStyle="info">Info</Button>
-
-          <Button bsStyle="warning">Warning</Button>
-
-          <Button bsStyle="danger">Danger</Button>
-
-          <Button bsStyle="link">Link</Button>
-        </div>
+      <div className="form-group verify-box clearfix">
+        <input name="verify" className="form-control" type="text" placeholder="请输入验证码" />
+        <Button type="primary" ref="btn" onClick={this.clickh}>获取验证码</Button>
+      </div>
     )
-
-
   }
-}*/
-/*var ButtonInstance = React.createClass({
-  render: function(){
-    return <p>123</p>
+  clickh() {
+    console.log(this.refs.btn.innerHTML);
+    var count = 30,
+      self = this;
+    if(this.state.switch){
+      this.setState({
+        switch: false,
+      });
+      this.refs.btn.disabled = true;
+      this.timer = setInterval(function(){
+        self.refs.btn.innerHTML = count;
+        count --;
+        if(count < 0){
+          clearInterval(self.timer);
+          self.setState({
+            switch: true,
+          });
+          self.refs.btn.innerHTML = '重新获取';
+          self.refs.btn.disabled = false;
+        }
+      },1000);
+    }
   }
-});*/
-  /*const buttonsInstance = (
+}
 
-   );*/
+class PassSec extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      switch: true
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+  render(){
+    return(
+      <div className="form-group pass-box">
+        <input name="password" className="form-control" type="password" ref="pass" placeholder="请输入6-8位数字密码"/>
+        <a className="j_passSwitch" href="javascript:;" data-switch="0" ref="passSwitch" onClick={this.handleClick}>显示密码</a>
+      </div>
+    )
+  }
+  handleClick(){
+    if(this.state.switch){
+      this.refs.pass.type = 'text';
+      this.refs.passSwitch.innerHTML = '隐藏密码';
+      this.setState({
+        switch: false
+      });
+    } else {
+      this.refs.pass.type = 'password';
+      this.refs.passSwitch.innerHTML = '显示密码';
+      this.setState({
+        switch: true
+      });
+    }
+  }
+}
 
+class Accept extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      checked: true
+    }
+  }
+  render(){
+    return(
+      <div>
+        <div className="form-group agreement clearfix">
+          <div className="chk-box">
+            <input className="j_agree" name="agree" type="checkbox" defaultChecked onChange={this.handleChange.bind(this)}/>
+            <span></span>
+          </div>
+          <p>我同意<a href="#">《借款服务与隐私协议》</a></p>
+        </div>
+        <div className="form-group submit-box">
+          <input type="submit" className="btn btn-primary j_submit" href="javascript:;" value="快速注册" ref="submit"/>
+        </div>
+      </div>
+    )
+  }
+  handleChange(){
+    if(this.state.checked){
+      this.refs.submit.disabled = true;
+      this.setState({
+        checked: false
+      });
+    } else {
+      this.refs.submit.disabled = false;
+      this.setState({
+        checked: true
+      });
+    }
+  }
+}
 ReactDOM.render(<Main />, section)
