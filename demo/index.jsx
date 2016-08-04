@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'antd';
 
 require('./js/jquery-3.0.0.min.js');
 import CommonApp from './js/index.js';
 
 require('./less/bootstrap.less');
 require('./css/main.css');
-
-
 
 var imgUrl = require('./img/apply.png');
 var imgUrl1 = require('./img/audit.png');
@@ -76,12 +73,12 @@ class VerifySec extends React.Component{
     return (
       <div className="form-group verify-box clearfix">
         <input name="verify" className="form-control" type="text" placeholder="请输入验证码" />
-        <Button type="primary" ref="btn" onClick={this.clickh}>获取验证码</Button>
+        <a className="btn btn-primary" ref="btn" onClick={this.clickh}>获取验证码</a>
       </div>
     )
   }
   clickh() {
-    console.log(this.refs.btn.innerHTML);
+
     var count = 30,
       self = this;
     if(this.state.switch){

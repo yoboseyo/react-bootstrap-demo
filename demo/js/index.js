@@ -14,7 +14,6 @@ let CommonApp = {
     if (!document.addEventListener) return;
     window.addEventListener(resizeEvt, recalc, false);
     recalc();
-
   }
 }
 export default CommonApp;
