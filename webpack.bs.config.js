@@ -37,21 +37,23 @@ module.exports = {
       {
         test   : /\.woff/,
         loader : 'url?prefix=font/&limit=10000&mimetype=application/font-woff&name=font/[name][hash].[ext]'
-      }, {
+      },
+      {
         test   : /\.ttf/,
         loader : 'file?prefix=font/&name=font/[name][hash].[ext]'
-      }, {
+      },
+      {
         test   : /\.eot/,
         loader : 'file?prefix=font/&name=font/[name][hash].[ext]'
-      }, {
+      },
+      {
         test   : /\.svg/,
         loader : 'file?prefix=font/&name=font/[name][hash].[ext]'
-      },{
+      },
+      {
         test:/\.(png|jpg)$/,
         loader:  'file?name=../img/[name][hash].[ext]'
-      }
-
-
+      },
     ]
   },
   resolve: {
