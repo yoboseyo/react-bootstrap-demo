@@ -1,3 +1,4 @@
+var webpack = require("webpack");
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
@@ -68,6 +69,11 @@ module.exports = {
       title:"react bootstrap",
       chunks: ["index"],
       template: "./demo/index.html"
+    }),
+    new webpack.ProvidePlugin({
+      $:"jquery",
+      jQuery:"jquery",
+      "window.jQuery":"jquery"
     }),
     cssExtractor,
     lessExtractor

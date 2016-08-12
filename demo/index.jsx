@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-require('./js/jquery-3.0.0.min.js');
+import { ButtonInput } from 'react-bootstrap';
+require('./js/plugins/jquery-validation/jquery.validate.min.js')
 import CommonApp from './js/index.js';
-
 require('./less/bootstrap.less');
 require('./css/main.css');
 
@@ -42,6 +41,7 @@ class Main extends React.Component{
   }
   componentDidMount(){
     CommonApp.initFun();
+    CommonApp.formValidate();
   }
 }
 class MyForm extends React.Component {
