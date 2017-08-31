@@ -1,3 +1,4 @@
+var webpack = require("webpack");
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
@@ -11,6 +12,7 @@ module.exports = {
   },
   output: {
     path: './demo_build/',
+/*    publicPath: 'http://localhost:3001/demo_build',*/
     filename: '[name].js',
   },
   module:{
@@ -27,7 +29,7 @@ module.exports = {
         exclude: "/node_modules/"
       },
       {
-        test: /\.jsx?$/,
+        test:  /\.jsx?$/,
         loaders:['react-hot','babel?presets[]=es2015&presets[]=react'],
     /*    query: ['es2015','react'],*/
         exclude: "/node_modules/",
@@ -35,18 +37,24 @@ module.exports = {
       },
       {
         test   : /\.woff/,
-        loader : 'url?prefix=font/&limit=10000&mimetype=application/font-woff'
-      }, {
+        loader : 'url?prefix=font/&limit=10000&mimetype=application/font-woff&name=font/[name][hash].[ext]'
+      },
+      {
         test   : /\.ttf/,
-        loader : 'file?prefix=font/'
-      }, {
+        loader : 'file?prefix=font/&name=font/[name][hash].[ext]'
+      },
+      {
         test   : /\.eot/,
-        loader : 'file?prefix=font/'
-      }, {
+        loader : 'file?prefix=font/&name=font/[name][hash].[ext]'
+      },
+      {
         test   : /\.svg/,
-        loader : 'file?prefix=font/'
-      }
-
+        loader : 'file?prefix=font/&name=font/[name][hash].[ext]'
+      },
+      {
+        test:/\.(png|jpg)$/,
+        loader:  'file?name=../img/[name][hash].[ext]'
+      },
     ]
   },
   resolve: {
@@ -59,7 +67,13 @@ module.exports = {
   plugins:[
     new htmlWebpackPlugin({
       title:"react bootstrap",
-      chunks: ["index"]
+      chunks: ["index"],
+      template: "./demo/index.html"
+    }),
+    new webpack.ProvidePlugin({
+      $:"jquery",
+      jQuery:"jquery",
+      "window.jQuery":"jquery"
     }),
     cssExtractor,
     lessExtractor

@@ -254,8 +254,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url(f4769f9bdb7466be65088239c12046d1.eot);
-  src: url(f4769f9bdb7466be65088239c12046d1.eot?#iefix) format('embedded-opentype'), url(448c34a56d699c29117adc64c43affeb.woff2) format('woff2'), url(fa2772327f55d8198301fdb8bcfc8158.woff) format('woff'), url(e18bbf611f2a2e43afc071aa2f4e1512.ttf) format('truetype'), url(89889688147bd7575d6327160d64e760.svg#glyphicons_halflingsregular) format('svg');
+  src: url(font/glyphicons-halflings-regularf4769f9bdb7466be65088239c12046d1.eot);
+  src: url(font/glyphicons-halflings-regularf4769f9bdb7466be65088239c12046d1.eot?#iefix) format('embedded-opentype'), url(font/glyphicons-halflings-regular448c34a56d699c29117adc64c43affeb.woff2) format('woff2'), url(font/glyphicons-halflings-regularfa2772327f55d8198301fdb8bcfc8158.woff) format('woff'), url(font/glyphicons-halflings-regulare18bbf611f2a2e43afc071aa2f4e1512.ttf) format('truetype'), url(font/glyphicons-halflings-regularf721466883998665b87923b92dea655b.svg#glyphicons_halflingsregular) format('svg');
 }
 .glyphicon {
   position: relative;
@@ -1071,7 +1071,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "\5FAE\8F6F\96C5\9ED1", sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
@@ -6007,7 +6007,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "\5FAE\8F6F\96C5\9ED1", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6125,7 +6125,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "\5FAE\8F6F\96C5\9ED1", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6764,6 +6764,151 @@ button.close {
     display: none !important;
   }
 }
-body{
-  background-color: #000;
+@charset "utf-8";
+.btn{
+  height: 4.4rem;
+  border-radius: 2.2rem;
+  font-size: 15px;
+  padding: 0;
+  line-height: 4.4rem;
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus,
+.btn-primary:active:hover{
+  background-color: #01acfb;
+  border-color: #01acfb;
+}
+.chk-box{
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+}
+.chk-box input{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0;
+  margin: 0;
+}
+
+.chk-box span{
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  background: url(../img/sel_def8de049e01ae0bc14e89558092d36653f.png) center no-repeat;
+  background-size: cover;
+}
+.chk-box input:checked + span{
+  background-image: url(../img/selb5e28483eb85ffedcc16f5e60327e526.png);
+}
+.page-reg .banner{
+  height: 18rem;
+  background: url(../img/banner4beddbd9a91bc7ac84e4d1b17c203e26.jpg) center no-repeat;
+  background-size: cover;
+  margin-bottom: 2.8rem;
+}
+.page-reg .feature-list{
+  padding: 0 3rem;
+  list-style: none;
+}
+.page-reg .feature-list li{
+  float: left;
+}
+.page-reg .feature-list .list-item{
+  width: 6.7rem;
+}
+.page-reg .feature-list .list-dec{
+  width: 4.5rem;
+  height: 3.35rem;
+  border-bottom: 1px solid #04a0e3;
+  margin: 0 0.2rem;
+}
+.page-reg .feature-list .list-item img{
+  display: block;
+  width: 6.7rem;
+  height: 6.7rem;
+}
+.page-reg .feature-list .list-item p{
+  font-size: 14px;
+  color: #000;
+  line-height: 3.8rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+.page-reg .reg-form{
+  margin: 0 1.5rem;
+}
+.page-reg .reg-form .form-group{
+  margin-bottom: 2rem;
+}
+.page-reg .reg-form .form-control{
+  height: 4.4rem;
+  line-height: 4.4rem;
+  font-size: 16px;
+  border-radius: 2.2rem;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin-bottom: 1.9rem;
+}
+.page-reg .reg-form .pass-box{
+  position: relative;
+}
+.page-reg .reg-form .pass-box .form-control{
+  padding-right: 10rem;
+}
+.page-reg .reg-form .pass-box a{
+  position: absolute;
+  right: 1.5rem;
+  top: 0;
+  color: #00abfa;
+  text-decoration: none;
+  line-height: 4.4rem;
+}
+.page-reg .reg-form .verify-box .form-control{
+  float: left;
+  width: 17.2rem;
+  margin-bottom: 0;
+
+}
+.page-reg .reg-form .verify-box .btn-primary{
+  float: right;
+  width: 13.7rem;
+}
+.page-reg .reg-form .agreement{
+  padding-left: 4.5rem;
+}
+.page-reg .reg-form .agreement .chk-box{
+  float: left;
+}
+.page-reg .reg-form .agreement p{
+  float: left;
+  margin-left: 0.6rem;
+  margin-bottom: 0;
+  font-size: 15px;
+  color: #898989;
+  line-height: 2rem;
+}
+.page-reg .reg-form .agreement p a{
+  color: #e96220;
+}
+.page-reg .reg-form .submit-box .btn{
+  width: 100%;
+  font-size: 20px;
+}
+.page-reg .reg-form .form-group{
+  position: relative;
+}
+.page-reg .reg-form .form-group label.error{
+  position: absolute;
+  left: 12px;
+  bottom: -24px;
+  font-size: 12px;
+  color: #e96220;
+  font-weight: normal;
 }
