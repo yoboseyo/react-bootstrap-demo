@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from 'react-bootstrap';
-
 require('./less/bootstrap.less');
 require('./css/main.css');
 var section = document.createElement('section');
 document.body.appendChild(section);
-
-class ButtonInstance extends React.Component{
+class MainSec extends React.Component{
   render(){
     return (
         <div>
-
           <Button>Default</Button>
 
           <Button bsStyle="primary">Primary</Button>
@@ -27,8 +24,6 @@ class ButtonInstance extends React.Component{
           <Button bsStyle="link">Link</Button>
         </div>
       )
-
-
   }
 }
 /*var ButtonInstance = React.createClass({
@@ -40,4 +35,4 @@ class ButtonInstance extends React.Component{
 
    );*/
 
-ReactDOM.render(<ButtonInstance />, section);
+ReactDOM.render(<MainSec />, section);
