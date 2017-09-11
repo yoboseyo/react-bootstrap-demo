@@ -5,27 +5,41 @@ require('./less/bootstrap.less');
 require('./css/main.css');
 var section = document.createElement('section');
 document.body.appendChild(section);
-class MainSec extends React.Component{
-  render(){
-    return (
-        <div>
-          <Button>Default</Button>
+import { Select } from 'antd';
+const Option = Select.Option;
 
-          <Button bsStyle="primary">Primary</Button>
+const provinceData = ['Zhejiang', 'Jiangsu'];
+const cityData = {
+  Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
+  Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
+};
+let index = 0;
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      name: 'Joseph'
+    }
+  }
+  componentDidMount(){
 
-          <Button bsStyle="success">Success</Button>
+      this.setState({
+        name: 'fan'
+      },() => console.log(this.state.name,'????????'));
 
-          <Button bsStyle="info">Info</Button>
+  }
 
-          <Button bsStyle="warning">Warning</Button>
-
-          <Button bsStyle="danger">Danger</Button>
-
-          <Button bsStyle="link">Link</Button>
-        </div>
-      )
+  render() {
+    index++;
+    console.log(index,'第' + index + '次渲染')
+    return(
+      <div>{this.state.name}</div>
+      <div>{this.state.name}</div>
+    )
   }
 }
+
+ReactDOM.render(<App />, section);
 /*var ButtonInstance = React.createClass({
   render: function(){
     return <p>123</p>
@@ -35,4 +49,4 @@ class MainSec extends React.Component{
 
    );*/
 
-ReactDOM.render(<MainSec />, section);
+//ReactDOM.render(<MainSec />, section);
